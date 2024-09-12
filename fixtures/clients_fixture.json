@@ -1,0 +1,50 @@
+[
+    {
+        "model": "budgets.Client",
+        "fields": {
+            "name": "INSTITUTO THADEU JOSÉ DE MORAIS",
+            "document": "10.558.261/0001-85",
+            "address": "Alameda Fernando Costa, 269 - Jardim Imperador - Suzano - São Paulo - 08673-260"
+        }
+    },
+    {
+        "model": "budgets.Client",
+        "fields": {
+            "name": "APM E E PROFESSOR JOSÉ PAPAIZ",
+            "document": "58.476.771/0001-30",
+            "address": "Rua Geraldo Gomes Sandim, 99 - Jardim Leblom - Suzano - São Paulo - 08655-140"
+        }
+    },
+    {
+        "model": "budgets.Client",
+        "fields": {
+            "name": "INSTITUTO NACIONAL DE TECNOLOGIA E SAUDE",
+            "document": "11.344.038/0001-06",
+            "address": "Avenida Professor Magalhaes Neto, 1856 - Pituba - Salvador - Bahia - 41810-012"
+        }
+    },
+    {
+        "model": "budgets.Client",
+        "fields": {
+            "name": "INSTITUTO NACIONAL DE TECNOLOGIA E SAUDE (SUZANO NOVO)",
+            "document": "11.344.038/0002-89",
+            "address": "Rua Antonio Renzi Primo, 250 - Centro - Suzano - São Paulo - 08675-350"
+        }
+    },
+    {
+        "model": "budgets.Client",
+        "fields": {
+            "name": "CONDOMINIO RESIDENCIAL VILLA VERDE I",
+            "document": "01.564.840/0001-40",
+            "address": "Rua Madame Pommery, 1260 - Vila Urupes - Suzano - São Paulo - 08615-090"
+        }
+    },
+    {
+        "model": "budgets.Client",
+        "fields": {
+            "name": "CONDOMÍNIO RESIDENCIAL VILLA VERDE II",
+            "document": "04.297.775/0001-21",
+            "address": "Rua Principe Feliz, 607 - Vila Urupes - Suzano - São Paulo - 08615-210"
+        }
+    }
+]
