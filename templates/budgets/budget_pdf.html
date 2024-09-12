@@ -1,0 +1,50 @@
+<html>
+
+<body>
+    <h1>Orçamento {{ budget.id }}</h1>
+    <p><strong>Empresa:</strong> NR ELÉTRICAS ME</p>
+    <p><strong>Responsável:</strong> Nilcio Rodrigues</p>
+    <p><strong>Endereço:</strong> Rua Lydio Fernandes da Costa, 71 - Suzano - SP</p>
+    <p><strong>Telefone:</strong> (11) 98641-8719</p>
+    <p><strong>Email:</strong> nilcio.r@hotmail.com</p>
+    <hr>
+
+    <p><strong>Cliente:</strong> {{ budget.client.name }}</p>
+    <p><strong>Endereço:</strong> {{ budget.client.address }}</p>
+    <p><strong>Data do Orçamento:</strong> {{ budget.budget_date }}</p>
+    <hr>
+    <h3>Descrição do Serviço</h3>
+    <p>{{ budget.service_description }}</p>
+
+    <h3>Materiais</h3>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Preço Unitário</th>
+            <th>Preço Total</th>
+        </tr>
+        {% for material in budget.materials.all %}
+        <tr>
+            <td>{{ material.description }}</td>
+            <td>{{ material.quantity }}</td>
+            <td>R$ {{ material.unit_price }}</td>
+            <td>R$ {{ material.total_price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Subtotal Materiais</h3>
+    <p><strong>Materiais:</strong> R$ {{ budget.total_materials }}</p>
+
+    <h3>Mão de Obra</h3>
+    <p><strong>Mão de Obra:</strong> R$ {{ budget.workforce }}</p>
+
+    <h3>Total Geral</h3>
+    <p><strong>Total:</strong> R$ {{ budget.total_amount }}</p>
+
+    <h3>Observações</h3>
+    <p>{{ budget.notes }}</p>
+</body>
+
+</html>
