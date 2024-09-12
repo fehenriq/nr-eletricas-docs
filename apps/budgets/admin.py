@@ -6,7 +6,7 @@ from django.core.files.base import ContentFile
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
-from .models import Budget, Client, Material
+from .models import Budget, Client, Material, Service
 
 
 class MaterialInline(admin.TabularInline):
@@ -16,6 +16,12 @@ class MaterialInline(admin.TabularInline):
     fields = ["description", "quantity", "unit_price", "total_price"]
 
 
+class ServiceInline(admin.TabularInline):
+    model = Service
+    extra = 1
+    fields = ["description", "price"]
+
+
 class ClientAdmin(admin.ModelAdmin):
     list_display = ("name", "document", "address")
     search_fields = ("name", "document", "address")
@@ -23,8 +29,9 @@ class ClientAdmin(admin.ModelAdmin):
 
 class BudgetAdmin(admin.ModelAdmin):
     list_display = ("client", "budget_date", "total_amount")
-    inlines = [MaterialInline]
+    inlines = [MaterialInline, ServiceInline]
     search_fields = ("client__name", "service_description")
+    readonly_fields = ["total_materials", "total_amount"]
     actions = ["generate_pdf_action"]
 
     def save_model(self, request, obj, form, change):

@@ -10,12 +10,15 @@
     <hr>
 
     <p><strong>Cliente:</strong> {{ budget.client.name }}</p>
+    <p><strong>CNPJ:</strong> {{ budget.client.document }}</p>
     <p><strong>Endereço:</strong> {{ budget.client.address }}</p>
     <p><strong>Data do Orçamento:</strong> {{ budget.budget_date }}</p>
+    <p><strong>Validade do Orçamento:</strong> {{ budget.validity_days }} dias</p>
     <hr>
     <h3>Descrição do Serviço</h3>
     <p>{{ budget.service_description }}</p>
 
+    {% if budget.budget_type == 'materials' %}
     <h3>Materiais</h3>
     <table border="1" cellpadding="5">
         <tr>
@@ -36,6 +39,28 @@
 
     <h3>Subtotal Materiais</h3>
     <p><strong>Materiais:</strong> R$ {{ budget.total_materials }}</p>
+
+    {% elif budget.budget_type == 'services' %}
+    <h3>Serviços</h3>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Serviço</th>
+            <th>Preço</th>
+        </tr>
+        {% for service in budget.services.all %}
+        <tr>
+            <td>{{ service.description }}</td>
+            <td>
+                {% if service.price %}
+                R$ {{ service.price }}
+                {% else %}
+                N/A
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
 
     <h3>Mão de Obra</h3>
     <p><strong>Mão de Obra:</strong> R$ {{ budget.workforce }}</p>
