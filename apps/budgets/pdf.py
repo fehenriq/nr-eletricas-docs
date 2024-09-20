@@ -165,11 +165,15 @@ def generate_pdf(budget):
     # Section 4: Valores
     add_subtitle("4. Valores", subtitle_style, elements)
 
-    details_values = [
-        f"<b>Mão de Obra:</b> {format_brl(budget.workforce)}",
-        f"<b>Subtotal Itens:</b> {format_brl(budget.total_items)}",
-        f"<b>Total Geral:</b> {format_brl(budget.total_amount)}",
-    ]
+    details_values = []
+
+    if budget.workforce > 0:
+        details_values.append(f"<b>Mão de Obra:</b> {format_brl(budget.workforce)}")
+        details_values.append(f"<b>Subtotal Itens:</b> {format_brl(budget.total_items)}")
+        details_values.append(f"<b>Total Geral:</b> {format_brl(budget.total_amount)}")
+    else:
+        details_values.append(f"<b>Total Geral:</b> {format_brl(budget.total_amount)}")
+
     for detail in details_values:
         elements.append(Paragraph(detail, styles["Normal"]))
         elements.append(Spacer(1, 0.1 * inch))
