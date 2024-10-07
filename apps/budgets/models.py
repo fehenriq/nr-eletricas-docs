@@ -36,7 +36,7 @@ class BudgetItem(models.Model):
     budget = models.ForeignKey(
         Budget, related_name="items", on_delete=models.CASCADE
     )
-    description = models.CharField(max_length=100)
+    description = models.TextField()
     quantity = models.PositiveIntegerField()
     unit_price = models.FloatField()
     total_price = models.FloatField(blank=True, null=True)

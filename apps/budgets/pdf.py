@@ -129,12 +129,15 @@ def generate_pdf(budget):
 
     add_subtitle("3. Itens", subtitle_style, elements)
 
-    data = [["Item", "Nome", "Quantidade", "Preço Unitário", "Preço Total"]]
+    centered_style = ParagraphStyle("Centered", parent=styles["Normal"], alignment=1)
+
+    data = [["Item", "Nome", "Qtd", "Preço Un.", "Preço Total"]]
     for item_number, item in enumerate(items, 1):
+        item_description = Paragraph(item.description, centered_style)
         data.append(
             [
                 str(item_number),
-                item.description,
+                item_description,
                 item.quantity,
                 format_brl(item.unit_price),
                 format_brl(item.total_price),
@@ -143,7 +146,7 @@ def generate_pdf(budget):
 
     table = Table(
         data,
-        colWidths=[0.5 * inch, 3 * inch, 1.25 * inch, 1.25 * inch, 1.25 * inch],
+        colWidths=[0.5 * inch, 4.25 * inch, 0.5 * inch, 1 * inch, 1 * inch],
     )
     table.setStyle(
         TableStyle(
@@ -169,7 +172,9 @@ def generate_pdf(budget):
 
     if budget.workforce > 0:
         details_values.append(f"<b>Mão de Obra:</b> {format_brl(budget.workforce)}")
-        details_values.append(f"<b>Subtotal Itens:</b> {format_brl(budget.total_items)}")
+        details_values.append(
+            f"<b>Subtotal Itens:</b> {format_brl(budget.total_items)}"
+        )
         details_values.append(f"<b>Total Geral:</b> {format_brl(budget.total_amount)}")
     else:
         details_values.append(f"<b>Total Geral:</b> {format_brl(budget.total_amount)}")
