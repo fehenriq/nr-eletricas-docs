@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.http import HttpResponse
 
 from .models import Budget, BudgetItem, Client
-from .pdf import generate_pdf
+from .pdf import generate_pdf, format_brl
 
 
 class MaterialInline(admin.TabularInline):
@@ -27,7 +27,10 @@ def generate_txt(budget):
 
     total = budget.total_amount
     lines.append(f"\nCliente: {budget.client.document}")
-    lines.append(f"\nTotal: {total}")
+    lines.append(
+        f"\nValor aproximado de imposto federal, estadual e municipal: {format_brl(total * 0.185)}"
+    )
+    lines.append(f"\nTotal: {format_brl(total)}")
 
     return "\n".join(lines)
 
