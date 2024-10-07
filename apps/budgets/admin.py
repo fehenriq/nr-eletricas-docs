@@ -23,13 +23,15 @@ def generate_txt(budget):
     lines = []
 
     for item in budget.items.all():
-        lines.append(f"{item.description}")
+        lines.append(
+            f"{item.description} - {format_brl(item.unit_price)} cada, total: {format_brl(item.total_price)}"
+        )
 
     total = budget.total_amount
-    lines.append(f"\nCliente: {budget.client.document}")
     lines.append(
         f"\nValor aproximado de imposto federal, estadual e municipal: {format_brl(total * 0.185)}"
     )
+    lines.append(f"\nCliente: {budget.client.document}")
     lines.append(f"\nTotal: {format_brl(total)}")
 
     return "\n".join(lines)
